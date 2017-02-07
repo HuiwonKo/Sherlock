@@ -13,14 +13,15 @@ def index(request):
     return render(request,'index.html')
 
 def room_list(request):
-    room_list = Room.objects.all()
+    room_list = Room.objects.filter(hard = , location = , )
     return render(request, "room_list.html",{'room_list':room_list})
 
 
 def room_detail(request,pk):
     room = get_object_or_404(Room, pk=pk)
-    review = get_object_or_404(Review, pk=pk)
-    return render(request, "room_detail.html",{"review":review,})
+    review = get_object_or_404(Review, pk= room.pk)
+    msn = {"room":room, "review":review,}
+    return render(request, "room_detail.html", msn)
 
 """
 @login_required
