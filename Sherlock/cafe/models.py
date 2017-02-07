@@ -23,25 +23,14 @@ class Room(models.Model):
     level = models.IntegerField(default=1, verbose_name="방 레벨")
     theme = models.CharField(max_length=50, verbose_name="방 테마")
     min_time = models.TimeField(verbose_name="방 탈출 최소 시간")
+    image = models.ImageField(blank=True, null=True, verbose_name="방 이미지")
 
-
-class Hard(models.Model):
-    room = models.ForeignKey(Room, related_name="room_hard_set")
+class Review(models.Model):
+    room = models.ForeignKey(Room, related_name="room_review_set")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일시")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="업데이트 일시")
-    score = models.IntegerField(default=0, null=True, verbose_name="방 난이도 점수")
-
-
-class Star(models.Model):
-    room = models.ForeignKey(Room, related_name="room_star_set")
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일시")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="업데이트 일시")
-    score = models.IntegerField(default=0, null=True, verbose_name="방 별점")
-
-class Comment(models.Model):
-    cafe = models.ForeignKey(Cafe, related_name="cafe_comment_set") # cafe : comment = 1 : N
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일시")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="업데이트 일시")
+    score_hard = models.IntegerField(default=0, null=True, verbose_name="방 난이도 점수")
+    score_star = models.IntegerField(default=0, null=True, verbose_name="방 별점")
     author = models.CharField(max_length=20, verbose_name="댓글 작성자")
     content = models.CharField(max_length=150, verbose_name="댓글 내용")
 
