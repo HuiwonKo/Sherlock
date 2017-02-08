@@ -1,4 +1,5 @@
 from django.db import models
+from .choices import *
 
 # Create your models here.
 
@@ -7,6 +8,7 @@ class Cafe(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="업데이트 일시")
     name = models.CharField(max_length=20, verbose_name="카페 이름")
     lnglat = models.CharField(max_length=50, verbose_name="카페 위치")
+    station = models.IntegerField(choices=STATION_CHOICES, default=0, verbose_name="카페 주변 지하철역")
     image = models.ImageField(blank=True, null=True, verbose_name="카페 이미지")
     url = models.CharField(max_length=50, verbose_name="카페 url 주소")
     price = models.IntegerField(default=0, verbose_name="카페 가격")
@@ -23,7 +25,7 @@ class Room(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="업데이트 일시")
     name = models.CharField(max_length=20, verbose_name="방 이름")
     number = models.IntegerField(default=1, verbose_name="방 번호")
-    level = models.IntegerField(default=1, verbose_name="방 레벨")
+    level = models.IntegerField(choices=LEVEL_CHOICES, default=0, verbose_name="방 레벨")
     theme = models.CharField(max_length=50, verbose_name="방 테마")
     min_time = models.TimeField(verbose_name="방 탈출 최소 시간")
     image = models.ImageField(blank=True, null=True, verbose_name="방 이미지")
