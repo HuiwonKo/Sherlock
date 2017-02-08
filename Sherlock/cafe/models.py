@@ -27,6 +27,7 @@ class Room(models.Model):
     theme = models.CharField(max_length=50, verbose_name="방 테마")
     min_time = models.TimeField(verbose_name="방 탈출 최소 시간")
     image = models.ImageField(blank=True, null=True, verbose_name="방 이미지")
+    #story = models.TextField(blank = True, verbose_name="방 설명")
 
     def __str__(self):
         return self.name

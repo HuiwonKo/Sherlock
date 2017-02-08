@@ -10,10 +10,10 @@ from .forms import ReviewForm
 
 
 def index(request):
-    return render(request,'index.html')
+    return render(request, "cafe/index.html")
 
 def room_list(request):
-    room_list = Room.objects.filter(hard = , location = , )
+    room_list = Room.objects.all()
     return render(request, "room_list.html",{'room_list':room_list})
 
 
