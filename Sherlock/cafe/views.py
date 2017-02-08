@@ -12,16 +12,18 @@ from .forms import ReviewForm
 def index(request):
     return render(request, "cafe/index.html")
 
-def room_list(request):
-    room_list = Room.objects.all()
-    return render(request, "room_list.html",{'room_list':room_list})
+# room_list filter 부분 디버깅 필요
+def room_list(request, pk, room_cafe_station, room_score_hard):
+    cafe = get_object_or_404(cafe, pk=pk)
+    room_list = Room.objects.filter(station = room_cafe_station, score_hard = room_score_hard)
+    return render(request, "cafe/room_list.html",{'room_list':room_list})
 
 
 def room_detail(request,pk):
     room = get_object_or_404(Room, pk=pk)
     review = get_object_or_404(Review, pk= room.pk)
     msn = {"room":room, "review":review,}
-    return render(request, "room_detail.html", msn)
+    return render(request, "cafe/room_detail.html", msn)
 
 
 @login_required
