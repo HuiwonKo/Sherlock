@@ -11,6 +11,9 @@ class Cafe(models.Model):
     url = models.CharField(max_length=50, verbose_name="카페 url 주소")
     price = models.IntegerField(default=0, verbose_name="카페 가격")
 
+    def __str__(self):
+        return self.name
+
 
 class Room(models.Model):
     cafe = models.ForeignKey(Cafe, related_name="cafe_room_set") # cafe : room = 1 : N
@@ -25,6 +28,9 @@ class Room(models.Model):
     min_time = models.TimeField(verbose_name="방 탈출 최소 시간")
     image = models.ImageField(blank=True, null=True, verbose_name="방 이미지")
 
+    def __str__(self):
+        return self.name
+
 class Review(models.Model):
     room = models.ForeignKey(Room, related_name="room_review_set")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일시")
@@ -33,6 +39,9 @@ class Review(models.Model):
     score_star = models.IntegerField(default=0, null=True, verbose_name="방 별점")
     author = models.CharField(max_length=20, verbose_name="댓글 작성자")
     content = models.CharField(max_length=150, verbose_name="댓글 내용")
+
+    def __str__(self):
+        return self.author
 
 
 """
