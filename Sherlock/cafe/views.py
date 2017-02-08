@@ -27,7 +27,7 @@ def room_detail(request,pk):
 @login_required
 def review_new(request,pk):
 
-    reviewObj = get_object_or_404(Review, pk=pk)
+    review = get_object_or_404(Review, pk=pk)
     if request.method == "POST":
         reviewForm = ReviewForm(request.POST)
         if reviewForm.is_valid():
@@ -37,9 +37,9 @@ def review_new(request,pk):
             review.save()
             messages.success(request,"리뷰가 성공적으로 등록되었습니다.")
             return redirect(room_detail, pk=pk)
-        else:
-            reviewForm = ReviewForm()
-        return render(request, 'room_detail.html',{'reviewForm':reviewForm , 'review':review})
+    else:
+        reviewForm = ReviewForm()
+    return render(request, 'room_detail.html',{'reviewForm':reviewForm , 'review':review})
 
 @login_required
 def review_edit(request,pk):
