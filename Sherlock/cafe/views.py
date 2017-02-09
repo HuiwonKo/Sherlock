@@ -4,20 +4,19 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
+from django.db.models import Q
 from .models import Cafe, Room, Review
 from .forms import ReviewForm
 
 
 def index(request):
     return render(request, "cafe/index.html")
-
-# room_list filter 부분 디버깅 필요
-def room_list(request, pk, room_cafe_station, room_score_hard):
-    cafe = get_object_or_404(cafe, pk=pk)
-    room_list = Room.objects.filter(station = room_cafe_station, score_hard = room_score_hard)
+#(cafe__station = int(key[0]))
+def room_list(request):
+    key = list(dict(request.GET).keys())
+    room_list = Room.objects.filter(Q(cafe__station = 1)|Q(cafe__station = 2))
+    print(Q(cafe__station = 1))
     return render(request, "cafe/room_list.html",{'room_list':room_list})
-
 
 def room_detail(request,pk):
     room = get_object_or_404(Room, pk=pk)

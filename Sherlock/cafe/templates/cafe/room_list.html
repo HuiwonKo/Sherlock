@@ -155,14 +155,14 @@
                         <h4><i class="fa fa-fw fa-check"></i><center>주변 지하철역</center></h4>
                     </div>
                     <div class="panel-body">
-                    <form method="GET" action="/cafe/room_list/">
+                    <form method="GET" action="">
                         <table width=300 height=130>
                         <tr>
-                            <td><input type="checkbox" name=1>강남역</td>
+                            <td><input type="checkbox" name="1">강남역</td>
                             <td><input type="checkbox" name="신림역">신림역</td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" name=2>건대입구역</td>
+                            <td><input type="checkbox" name="2">건대입구역</td>
                             <td><input type="checkbox" name="신촌역">신촌역</td>
                         </tr>
                         <tr>
@@ -182,7 +182,6 @@
                     </form>
                     </div>
                 </div>
-            </div>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -206,6 +205,14 @@
                     </table>
                     </div>
                 </div>
+            <ul>
+            {% for room in room_list %}
+                <li>
+                        {{ room.name }}
+                        {{ room.level }}
+                </li>
+            {% endfor %}
+            </ul>
 
 
             </div>
