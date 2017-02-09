@@ -14,7 +14,7 @@ def index(request):
 
 # room_list filter 부분 디버깅 필요
 def room_list(request, pk, room_cafe_station, room_score_hard):
-    cafe = get_object_or_404(cafe, pk=pk)
+    cafe = get_object_or_404(Cafe, pk=pk)
     room_list = Room.objects.filter(station = room_cafe_station, score_hard = room_score_hard)
     return render(request, "cafe/room_list.html",{'room_list':room_list})
 
