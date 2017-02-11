@@ -1,0 +1,326 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Who is Sherlock</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static "bootstrap/css/modern-business.css" %} rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static "bootstrap/font-awesome/css/font-awesome.min.css" %} rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .container .row {
+            padding-top: 50px;
+        }
+        .container .page-header{
+            text-align: center
+        }
+        .container .col-md-4 {
+            padding-top: 30px;
+        }
+    </style>
+<style>
+ #search_button {text-align: center;
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="portfolio-1-col.html">1 Column Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-2-col.html">2 Column Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-3-col.html">3 Column Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-4-col.html">4 Column Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-item.html">Single Portfolio Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="blog-home-1.html">Blog Home 1</a>
+                            </li>
+                            <li>
+                                <a href="blog-home-2.html">Blog Home 2</a>
+                            </li>
+                            <li>
+                                <a href="blog-post.html">Blog Post</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="full-width.html">Full Width Page</a>
+                            </li>
+                            <li>
+                                <a href="sidebar.html">Sidebar Page</a>
+                            </li>
+                            <li>
+                                <a href="faq.html">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="404.html">404</a>
+                            </li>
+                            <li>
+                                <a href="pricing.html">Pricing Table</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-lg-12", style="
+                background-image:url({% static 'image/xescape.jpg' %});
+                height: 300px;
+                width : 100%;
+            ">
+
+                <h1 style="color : white; vertical-align: middle; text-align: center; padding-top:30px;" >
+                    Who is Sherlock?
+                </h1>
+            </div>
+
+            <div class="col-md-4" id="search_form">
+
+                <div class="panel-heading" >
+                    <h4><i class="fa fa-fw fa-check"></i><center>주변 지하철역</center></h4>
+                </div>
+
+                <!--<div class="panel-body">-->
+
+                    <table width=300 height=130>
+                    <form name="form2">
+                        <tr>
+                            <td><input type="checkbox" value= "1" name="강남역">강남역</td>
+                            <td><input type="checkbox" value= "2" name="신림역">신림역</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value= "3" name="건대입구역">건대입구역</td>
+                            <td><input type="checkbox" value= "4" name="신촌역">신촌역</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value= "5" name="노원역">노원역</td>
+                            <td><input type="checkbox" value= "6" name="합정역">합정역</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value= "7" name="명동역">명동역</td>
+                            <td><input type="checkbox" value= "8" name="혜화역">혜화역</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value= "9" name="신논현역">신논현역</td>
+                            <td><input type="checkbox" value= "10" name="홍대입구역">홍대입구역</td>
+                        </tr>
+                    </form>
+                    </table>
+                <!--</div>-->
+            </div>
+            <div class="col-md-4">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-gift"></i><center>탈출성공확률</center></h4>
+                </div>
+                <!--<div class="panel-body">-->
+                <table width=300 height=80>
+                <form name="form2">
+                    <tr>
+                        <td><input type="checkbox" name="10미만" value='1'>10%미만</td>
+                        <td><input type="checkbox" name="10~" value='2'>10%~20%</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="20~" value='3'>20%~30%</td>
+                        <td><input type="checkbox" name="30~" value='4'>30%~40%</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="40~" value='5'>40%~50%</td>
+                        <td><input type="checkbox" name="50이상" value='6'>50%이상</td>
+                    </tr>
+                </form>
+                </table>
+                </div>
+            </div>
+
+            <!--
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-compass"></i> Easy to Use</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+                        <a href="#" class="btn btn-default">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            -->
+            <input type='button' id='search_button' onclick= "location.href = 'http://127.0.0.1:8000/cafe/location='+search_loc(form1.form)+'/level='+search_lev(form2.form)" value="Search!"/>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+    <div>
+
+    <hr>
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Your Website 2014</p>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src= '{% static "bootstrap/js/jquery.js" %}'></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src= '{% static "bootstrap/js/bootstrap.min.js" %}'></script>
+
+    <!-- Script to Activate the Carousel -->
+    <script language="javascript">
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    function search_loc(form1){
+        var msg = "";
+        if (form1.강남역.checked){
+            msg += form1.강남역.value;
+        }
+        else if (form1.건대입구역.checked){
+            msg += form1.건대입구역.value;
+        }
+        else if (form1.노원역.checked){
+            msg += form1.노원역.value;
+        }
+        else if (form1.명동역.checked){
+            msg += form1.명동역.value;
+        }
+        else if (form1.신논현역.checked){
+            msg += form1.신논현역.value;
+        }
+        else if (form1.신림역.checked){
+            msg += form1.신림역.value;
+        }
+        else if (form1.신촌역.checked){
+            msg += form1.신촌역.value;
+        }
+        else if (form1.합정역.checked){
+            msg += form1.합정역.value;
+        }
+        else if (form1.혜화역.checked){
+            msg += form1.혜화역.value;
+        }
+        else if (form1.홍대입구역.checked){
+            msg += form1.홍대입구역.value;
+        }
+        else{
+            msg += '-1';
+        }
+        return msg;
+    }
+    function search_lev(form2){
+        var msg2 = "";
+        if (form2.10미만.checked){
+            msg2 += form2.10미만.value;
+        }
+        else if (form2.10~.checked){
+            msg2 += form2.10~.value;
+        }
+        else if (form2.20~.checked){
+            msg2 += form2.20~.value;
+        }
+        else if (form2.30~.checked){
+            msg2 += form2.30~.value;
+        }
+        else if (form2.40~.checked){
+            msg2 += form2.40~.value;
+        }
+        else if (form2.50이상.checked){
+            msg2 += form2.50이상.value;
+        }
+        else{
+            msg2 += '-2';
+        }
+        return msg2
+    }
+    /*
+    function sendFunc(location, level)
+    {
+        location.href={% url "cafe:index" %}+"loc="+location+"/"+"lev="+level;
+    }*/
+    </script>
+
+        </script>
+    </script>
+
+</body>
+
+</html>
