@@ -16,6 +16,11 @@ class Profile(models.Model):
     #score = models.IntegerField(default=0, verbose_name='점수')
 
 
+GENDER_CHOICES = (
+    ('남','남'),
+    ('여','여'),
+)
+
 """
 class Group(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
