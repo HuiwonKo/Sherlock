@@ -148,38 +148,35 @@
                     Who is Sherlock?
                 </h1>
             </div>
-
+<form method="GET" action="/cafe/room_list/">
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading" >
                         <h4><i class="fa fa-fw fa-check"></i><center>주변 지하철역</center></h4>
                     </div>
                     <div class="panel-body">
-                    <form method="GET" action="/cafe/room_list/">
                         <table width=300 height=130>
                         <tr>
-                            <td><input type="checkbox" name=1>강남역</td>
-                            <td><input type="checkbox" name="신림역">신림역</td>
+                            <td><input type="checkbox" name="station" value="1">강남역</td>
+                            <td><input type="checkbox" name="station" value="6">신림역</td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" name=2>건대입구역</td>
-                            <td><input type="checkbox" name="신촌역">신촌역</td>
+                            <td><input type="checkbox" name="station" value="2">건대입구역</td>
+                            <td><input type="checkbox" name="station" value="7">신촌역</td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" name="노원역">노원역</td>
-                            <td><input type="checkbox" name="합정역">합정역</td>
+                            <td><input type="checkbox" name="station" value="3">노원역</td>
+                            <td><input type="checkbox" name="station" value="8">합정역</td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" name="명동역">명동역</td>
-                            <td><input type="checkbox" name="혜화역">혜화역</td>
+                            <td><input type="checkbox" name="station" value="4">명동역</td>
+                            <td><input type="checkbox" name="station" value="9">혜화역</td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" name="신논현역">신논현역</td>
-                            <td><input type="checkbox" name="홍대입구역">홍대입구역</td>
+                            <td><input type="checkbox" name="station" value="5">신논현역</td>
+                            <td><input type="checkbox" name="station" value="10">홍대입구역</td>
                         </tr>
-                        <input type="submit" value="조회" />
                         </table>
-                    </form>
                     </div>
                 </div>
             </div>
@@ -192,23 +189,24 @@
                     <div class="panel-body">
                     <table width=300 height=80>
                         <tr>
-                            <td><input type="checkbox" name="10%미만">10%미만</td>
-                            <td><input type="checkbox" name="10%~20%">10%~20%</td>
+                            <td><input type="checkbox" name="level" value="1">10%미만</td>
+                            <td><input type="checkbox" name="level" value="2">10%~20%</td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" name="20%~30%">20%~30%</td>
-                            <td><input type="checkbox" name="30%~40%">30%~40%</td>
+                            <td><input type="checkbox" name="level" value="3">20%~30%</td>
+                            <td><input type="checkbox" name="level" value="4">30%~40%</td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" name="40%~50%">40%~50%</td>
-                            <td><input type="checkbox" name="50%이상">50%이상</td>
+                            <td><input type="checkbox" name="level" value="5">40%~50%</td>
+                            <td><input type="checkbox" name="level" value="6">50%이상</td>
                         </tr>
                     </table>
                     </div>
                 </div>
-
-
             </div>
+
+            <input type="submit" value="조회" />
+            </form>
             <!--
             <div class="col-md-4">
                 <div class="panel panel-default">
