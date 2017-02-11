@@ -148,6 +148,7 @@
                     Who is Sherlock?
                 </h1>
             </div>
+
 <form method="GET" action="/cafe/room_list/">
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -207,6 +208,17 @@
 
             <input type="submit" value="조회" />
             </form>
+            <ul>
+            {% for room in room_list %}
+                <li>
+                        {{ room.name }}
+                        {{ room.level }}
+                </li>
+            {% endfor %}
+            </ul>
+
+
+            </div>
             <!--
             <div class="col-md-4">
                 <div class="panel panel-default">
