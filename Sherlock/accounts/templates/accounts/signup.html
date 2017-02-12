@@ -1,0 +1,11 @@
+{% extends "cafe/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+    <form id="signup" method = "POST" action="{% url 'signup' %}">
+        {% csrf_token %} <!-- Cross-Site Request Forgery라는 공격방법을 막을 수 있도록 장고에서 제공하는 기능. 사용자가 값을 입력해주는 Form태그 시작부분에 무조건 써줘야 에러가 나지 않는다. -->
+        <table>
+        {{ userform.as_table }} <!-- as_p는 UserCreationForm에 사용자가 입력한 값을 HTML로 변환해서 뿌려주는데 매 단락마다 <p>태그를 적용시켜준다. as_ul은 매단락마다 <ul>태그를 적용해주고 as_table은 매단락마다 <td>태그를 적용시켜줌.-->
+        </table>
+        <input type="submit" value="가입하기"/>
+    </form>
+{% endblock %}

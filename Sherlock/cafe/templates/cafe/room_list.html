@@ -1,8 +1,11 @@
 {% extends "cafe/layout.html" %}
+
 {% load staticfiles %}
+
 {% block content %}
 
-         <form method="GET" action="/cafe/room_list/">
+
+        <form method="GET" action="/cafe/room_list/">
             <div class="container">
                 <div class="col-md-4">
                     <div class="panel panel-default">
@@ -70,4 +73,56 @@
             </div>
         </form>
 
+        <!-- 검색결과 화면 -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Room_List</h1>
+            </div>
+        </div>
+
+        {% for room in room_list %}
+        <div class="row">
+            <div class="col-md-1 text-center"></div>
+            <div class="col-md-5">
+                <a href="blog-post.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/600x300" alt="">
+                </a>
+            </div>
+            <div class="col-md-6">
+                <h3>
+                    <a href="blog-post.html">{{ room.name }}</a>
+                </h3>
+                <p>방난이도 = {{ room.level }}</a>
+                </p>
+                <p>방설명 : 블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
+                <a class="btn btn-primary" href="###">Read More <i class="fa fa-angle-right"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- /.row -->
+        <!-- Pager -->
+        <div class="row">
+            <ul class="pager">
+                <li class="previous"><a href="#">&larr; Previous</a>
+                </li>
+                <li class="next"><a href="#">Next &rarr;</a>
+                </li>
+            </ul>
+        </div>
+<!--
+        <div class="row">
+            {% for room in room_list %}
+            <div class="col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="###" alt="">
+                    {{ room.name }}
+                    {{ room.level }}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+/.row -->
+
 {% endblock %}
+

@@ -4,7 +4,8 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
+from django.db.models import Q
+from django.db.models.query import EmptyQuerySet
 from .models import Cafe, Room, Review
 from .forms import ReviewForm
 
@@ -12,12 +13,23 @@ from .forms import ReviewForm
 def index(request):
     return render(request, "cafe/index.html")
 
-# room_list filter 부분 디버깅 필요
-def room_list(request, pk, room_cafe_station, room_score_hard):
-    cafe = get_object_or_404(Cafe, pk=pk)
-    room_list = Room.objects.filter(station = room_cafe_station, score_hard = room_score_hard)
-    return render(request, "cafe/room_list.html",{'room_list':room_list})
+def room_list(request):
+    station_key = request.GET.getlist("station")
+    level_key = request.GET.getlist("level")
+    station_room_list = Room.objects.none()
+    level_room_list = Room.objects.none()
+    for index in range(0,len(station_key)):
+        station_room_list = station_room_list | Room.objects.filter(cafe__station = station_key[index])
+    for index in range(0,len(level_key)):
+        level_room_list = level_room_list | Room.objects.filter(level = level_key[index])
+    if isinstance(station_room_list, EmptyQuerySet):
+        room_list = level_room_list
+    elif isinstance(level_room_list, EmptyQuerySet):
+        room_list = station_room_list
+    else :
+        room_list = station_room_list & level_room_list
 
+    return render(request, "cafe/room_list.html",{'room_list':room_list})
 
 def room_detail(request,pk):
     room = get_object_or_404(Room, pk=pk)
