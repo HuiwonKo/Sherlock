@@ -130,7 +130,7 @@
                         <a href="{% url 'profile' %}">My Profile</a>
                     </li>
                     <li>
-                        <a href="{% url 'logout' %}?next=/cafe">로그아웃</a>
+                        <a href="{% url 'logout' %}?next={{ request.path }}">로그아웃</a>
                     </li>
                     {% endif %}
                 </ul>
