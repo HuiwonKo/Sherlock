@@ -1,0 +1,11 @@
+{% extends "cafe/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+    <form id="login" method = "POST" action="{{ request.path }}">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="LOGIN!"/>
+    </form>
+{% endblock %}
+
+<!--href="{% url 'login' %}?next={{ request.path }}"-->

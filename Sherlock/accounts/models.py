@@ -4,17 +4,11 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile")
-    #group = models.ForeignKey(Group, related_name='Profile_Group_set')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    login_id = models.CharField(max_length=20, verbose_name='아이디')
-    login_pw = models.CharField(max_length=20, verbose_name='비밀번호')
-    name = models.CharField(max_length=20, verbose_name='이름')
+    #1
     gender = models.BooleanField(default=True)
     nickname = models.CharField(max_length=20, verbose_name='닉네임')
-    #level = models.CharField(max_length=20, verbose_name='레벨')
-    #score = models.IntegerField(default=0, verbose_name='점수')
-
+    phone = models.CharField(max_length = 20)
+    #2
 
 GENDER_CHOICES = (
     ('남','남'),
@@ -29,4 +23,14 @@ class Group(models.Model):
     name = models.CharField(max_length=20, verbose_name='그룹 이름')
     level = models.CharField(max_length=20, verbose_name='레벨')
     score = models.IntegerField(default=0, verbose_name='점수')
+    #1
+    #group = models.ForeignKey(Group, related_name='Profile_Group_set')
+    #created_at = models.DateTimeField(auto_now_add=True)
+    #updated_at = models.DateTimeField(auto_now=True)
+    #login_id = models.CharField(max_length=20, verbose_name='아이디')
+    #login_pw = models.CharField(max_length=20, verbose_name='비밀번호')
+    #name = models.CharField(max_length=20, verbose_name='이름')
+    #2
+     #level = models.CharField(max_length=20, verbose_name='레벨')
+    #score = models.IntegerField(default=0, verbose_name='점수')
 """

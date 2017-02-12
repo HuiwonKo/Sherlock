@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', lambda request: redirect('cafe:index')),
     url(r'^cafe/', include('cafe.urls', namespace = 'cafe')),
+    url(r'^accounts/', include('accounts.urls')),
 ]
 
 
