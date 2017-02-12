@@ -4,32 +4,27 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.db.models import Q
-from django.db.models.query import EmptyQuerySet
 from .models import Cafe, Room, Review
 from .forms import ReviewForm
 
 
 def index(request):
-    return render(request, "cafe/index.html")
-
-def room_list(request):
     station_key = request.GET.getlist("station")
     level_key = request.GET.getlist("level")
-    station_room_list = Room.objects.none()
-    level_room_list = Room.objects.none()
-    for index in range(0,len(station_key)):
-        station_room_list = station_room_list | Room.objects.filter(cafe__station = station_key[index])
-    for index in range(0,len(level_key)):
-        level_room_list = level_room_list | Room.objects.filter(level = level_key[index])
-    if isinstance(station_room_list, EmptyQuerySet):
-        room_list = level_room_list
-    elif isinstance(level_room_list, EmptyQuerySet):
-        room_list = station_room_list
-    else :
-        room_list = station_room_list & level_room_list
+    room_list = Room.objects.none()
+    if station_key and level_key:
+        room_list = Room.objects.filter(cafe__station__in = station_key, level__in = level_key)
+    elif station_key:
+        room_list = Room.objects.filter(cafe__station__in = station_key)
+    elif level_key:
+        room_list = Room.objects.filter(level__in = level_key)
+    return render(request, "cafe/index.html", {
+        'room_list':room_list,
+        'stations':station_key,
+        'levels':level_key,
+        })
 
-    return render(request, "cafe/room_list.html",{'room_list':room_list})
+#def room_list(request):
 
 def room_detail(request,pk):
     room = get_object_or_404(Room, pk=pk)
