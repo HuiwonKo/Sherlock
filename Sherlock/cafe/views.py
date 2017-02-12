@@ -9,8 +9,8 @@ from .forms import ReviewForm
 
 
 def index(request):
-    station_key = request.GET.getlist("station")
-    level_key = request.GET.getlist("level")
+    station_key = request.POST.getlist("station")
+    level_key = request.POST.getlist("level")
     room_list = Room.objects.none()
     if station_key and level_key:
         room_list = Room.objects.filter(cafe__station__in = station_key, level__in = level_key)
