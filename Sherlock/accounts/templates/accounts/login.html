@@ -1,7 +1,7 @@
 {% extends "cafe/layout.html" %}
 {% load staticfiles %}
 {% block content %}
-    <form id="login" method = "POST">
+    <form id="login" method = "POST" >
         {% csrf_token %}
         {{ form.as_table }}
         <input type="submit" value="LOGIN!"/>
