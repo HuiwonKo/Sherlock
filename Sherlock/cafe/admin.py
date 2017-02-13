@@ -1,7 +1,19 @@
 from django.contrib import admin
 from .models import Cafe, Room, Review
-# Register your models here.
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+class CafeResource(resources.ModelResource):
+    class Meta:
+        model = Cafe
+        fields = (
+        'id', 'name', 'lnglat', 'station', 'url', 'phone', 'address'
+        )
+
+
+class CafeAdmin(ImportExportModelAdmin):
+    resource_class = CafeResource
 
 admin.site.register(Room)
-admin.site.register(Cafe)
+admin.site.register(Cafe, CafeAdmin)
 admin.site.register(Review)
