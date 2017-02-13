@@ -1,42 +1,63 @@
 {% extends 'cafe/layout.html' %}
+{% load staticfiles %}
 {% block content %}
     <!-- Page Content -->
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Room_List</h1>
+                <h1 class="page-header">{{ room.name }}</h1>
             </div>
         </div>
         <!-- /.row -->
         <!-- Blog Post Row -->
         <div class="row">
             <div class="col-md-1 text-center"></div>
-            <div class="col-md-5">
-                <a href="blog-post.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/600x300" alt="">
-                </a>
+            <div class="col-md-5" >
+                    <img class="img-responsive img-hover" src="{{ room.image.url }}" alt="">
             </div>
+
             <div class="col-md-6">
                 <h3>
-                    <a href="blog-post.html">Blog Post Title</a>
+                    {{ room.name }}
                 </h3>
-                <p>by <a href="#">Start Bootstrap</a>
+                <p>
+                    {{ room.story }}
                 </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                <a class="btn btn-primary" href="blog-post.html">Read More <i class="fa fa-angle-right"></i></a>
             </div>
-        </div>
-        <!-- /.row -->
 
+            <div id="map" style="width:100%;height:400px;"></div>
+            <script>
+            var cafe_address = "{{ room.cafe.address }}";
+            var map = new naver.maps.Map('map', {
+                center: new naver.maps.LatLng(37.3595704, 127.105399),
+                zoom: 11
+            });
 
-        <!-- Pager -->
-        <div class="row">
-            <ul class="pager">
-                <li class="previous"><a href="#">&larr; Previous</a>
-                </li>
-                <li class="next"><a href="#">Next &rarr;</a>
-                </li>
-            </ul>
+            var marker = new naver.maps.Marker({
+                position: new naver.maps.LatLng(37.3595704, 127.105399),
+                map: map
+            });
+
+            // result by latlng coordinate
+            function searchAddressToCoordinate(address) {
+                naver.maps.Service.geocode({
+                    address: address
+                }, function(status, response) {
+                    if (status === naver.maps.Service.Status.ERROR) {
+                        return alert('Something Wrong!');
+                    }
+
+                    var item = response.result.items[0],
+                        addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]',
+                        point = new naver.maps.Point(item.point.x, item.point.y);
+
+                    map.setCenter(point);
+                    marker.setPosition(point);
+                });
+            }
+
+            naver.maps.onJSContentLoaded = searchAddressToCoordinate(cafe_address);
+            </script>
         </div>
         <!-- /.row -->
 
