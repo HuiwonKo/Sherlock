@@ -5,7 +5,7 @@
 {% block content %}
 
 
-        <form method="POST" action="">
+        <form method="POST" action="#search">
         {% csrf_token %}
             <div class="container">
                 <div class="col-md-4">
@@ -75,11 +75,15 @@
         </form>
 
         <!-- 검색결과 화면 -->
+        <section id="search">
+        <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Room_List</h1>
             </div>
         </div>
+        </div>
+        </section>
         {% if stations or levels %}
         {% for room in room_list %}
         <div class="row">
