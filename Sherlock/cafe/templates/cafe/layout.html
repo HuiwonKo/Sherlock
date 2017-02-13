@@ -17,10 +17,10 @@
     <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{% static "bootstrap/css/modern-business.css" %} rel="stylesheet">
+    <link href="{% static "bootstrap/css/modern-business.css" %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{% static "bootstrap/font-awesome/css/font-awesome.min.css" %} rel="stylesheet" type="text/css">
+    <link href="{% static "bootstrap/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -142,56 +142,61 @@
         <!-- /.container -->
     </nav>
 
+    <!-- Header Carousel-->
+        <header id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!— Indicators —>
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!— Wrapper for slides —>
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                  <div class="fill" style="background-image:url({% static 'image/1.jpg' %});"></div>
+                  <div class="carousel-caption">
+                      <h2>Caption 1</h2>
+                    </div>
+              </div>
+            <div class="item">
+                <div class="fill" style="background-image:url({% static 'image/2.jpg' %});"></div>
+                <div class="carousel-caption">
+                    <h2>Caption 2</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url({% static 'image/3.jpg' %});"></div>
+                <div class="carousel-caption">
+                    <h2>Caption 3</h2>
+                </div>
+            </div>
+        </div>
+        <!— Controls —>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+      </header>
+    <!--Header-->
+
 
     <!-- Page Content -->
     <div class="container">
 
         <!-- Marketing Icons Section -->
         <div class="row">
-            <div class="col-lg-12", style="
-                background-image:url({% static 'image/xescape.jpg' %});
-                height: 300px;
-                width : 100%;
-            ">
-
-                <h1 style="color : white; vertical-align: middle; text-align: center; padding-top:30px;" >
-                    Who is Sherlock?
-                </h1>
-            </div>
-
-            <!--
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-compass"></i> Easy to Use</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                        <a href="#" class="btn btn-default">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            -->
-
 
         {% block content %}
         {% endblock %}
 
+        </div>
 
     <hr>
 
-    <!-- Call to Action Section
-        <div class="well">
-            <div class="row">
-                <div class="col-md-8">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
-                </div>
-                <div class="col-md-4">
-                    <a class="btn btn-lg btn-default btn-block" href="#">Call to Action</a>
-                </div>
-            </div>
-        </div>
-    -->
+
     <!-- Footer -->
     <footer>
         <div class="row", style="text-decoration:blink; text-align: center">
