@@ -28,9 +28,10 @@ def index(request):
 
 def room_detail(request,pk):
     room = get_object_or_404(Room, pk=pk)
-    review = get_object_or_404(Review, pk= room.pk)
-    msn = {"room":room, "review":review,}
-    return render(request, "cafe/room_detail.html", msn)
+    #review = get_object_or_404(Review, pk= room.pk)
+    return render(request, "cafe/room_detail.html", {
+        "room":room,
+        })
 
 
 @login_required
