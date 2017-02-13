@@ -8,47 +8,62 @@
         <form method="POST" action="#search">
         {% csrf_token %}
             <div class="container">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading" >
-                            <h4><i class="fa fa-fw fa-check"></i><center>주변 지하철역</center></h4>
+                            <h4><center>주변 지하철역</center></h4>
                         </div>
                         <div class="panel-body">
-                            <table width=300 height=130>
+                            <table width=450 height=190>
                             <tr>
                                 <td><input type="checkbox" name="station" value="1">강남역</td>
-                                <td><input type="checkbox" name="station" value="6">신림역</td>
+                                <td><input type="checkbox" name="station" value="8">성신여대입구역</td>
+                                <td><input type="checkbox" name="station" value="15">영등포역</td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" name="station" value="2">건대입구역</td>
-                                <td><input type="checkbox" name="station" value="7">신촌역</td>
+                                <td><input type="checkbox" name="station" value="9">신논현역</td>
+                                <td><input type="checkbox" name="station" value="16">이태원역</td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox" name="station" value="3">노원역</td>
-                                <td><input type="checkbox" name="station" value="8">합정역</td>
+                                <td><input type="checkbox" name="station" value="3">구로디지털단지역</td>
+                                <td><input type="checkbox" name="station" value="10">신림역</td>
+                                <td><input type="checkbox" name="station" value="17">잠실새내역</td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox" name="station" value="4">명동역</td>
-                                <td><input type="checkbox" name="station" value="9">혜화역</td>
+                                <td><input type="checkbox" name="station" value="4">노원역</td>
+                                <td><input type="checkbox" name="station" value="11">신사역</td>
+                                <td><input type="checkbox" name="station" value="18">종각역</td>
                             </tr>
                             <tr>
-                                <td><input type="checkbox" name="station" value="5">신논현역</td>
-                                <td><input type="checkbox" name="station" value="10">홍대입구역</td>
+                                <td><input type="checkbox" name="station" value="5">명동역</td>
+                                <td><input type="checkbox" name="station" value="12">신촌역</td>
+                                <td><input type="checkbox" name="station" value="19">합정역</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="station" value="6">목동역</td>
+                                <td><input type="checkbox" name="station" value="13">압구정로데오역</td>
+                                <td><input type="checkbox" name="station" value="20">혜화역</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="station" value="7">상수역</td>
+                                <td><input type="checkbox" name="station" value="14">어린이대공원역</td>
+                                <td><input type="checkbox" name="station" value="21">홍대입구역</td>
                             </tr>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4><i class="fa fa-fw fa-gift"></i><center>탈출성공확률</center></h4>
+                            <h4><center>탈출성공확률</center></h4>
                         </div>
                         <div class="panel-body">
-                        <table width=300 height=130>
+                        <table width=450 height=190>
                             <tr>
                                 <td><input type="checkbox" name="level" value="1">10%미만</td>
-                                <td><input type="checkbox" name="level" value="2">10%~20%</td>
+                                <td><input type="checkbox" name="level" value="2">10%~20%미만</td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" name="level" value="3">20%~30%</td>
@@ -62,12 +77,14 @@
                         </div>
                     </div>
                 </div>
+                <!--
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading"></div>
                          <div class="panel-body"></div>
                     </div>
                 </div>
+                -->
             </div>
             <div style="text-align: center;">
                 <input type="submit" value="Search" />
