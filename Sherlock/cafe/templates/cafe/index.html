@@ -75,6 +75,7 @@
         </form>
 
         <!-- 검색결과 화면 -->
+        {% if stations or levels %}
         <section id="search">
         <div class="container">
         <div class="row">
@@ -84,7 +85,6 @@
         </div>
         </div>
         </section>
-        {% if stations or levels %}
         {% for room in room_list %}
         <div class="row">
             <div class="col-md-1 text-center"></div>
@@ -104,7 +104,6 @@
             </div>
         </div>
         {% endfor %}
-        {% endif %}
         <!-- /.row -->
         <!-- Pager -->
         <div class="row">
@@ -115,6 +114,8 @@
                 </li>
             </ul>
         </div>
+
+        {% endif %}
 <!--
         <div class="row">
             {% for room in room_list %}
