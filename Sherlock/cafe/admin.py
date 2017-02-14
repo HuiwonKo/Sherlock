@@ -10,11 +10,20 @@ class CafeResource(resources.ModelResource):
         'id', 'name', 'lnglat', 'station', 'url', 'phone', 'address'
         )
 
-
 class CafeAdmin(ImportExportModelAdmin):
     resource_class = CafeResource
 
-admin.site.register(Room)
+class RoomResource(resources.ModelResource):
+    class Meta:
+        model = Room
+        fields = (
+        'id', 'cafe', 'score_star', 'name', 'number', 'level', 'story'
+        )
+
+class RoomAdmin(ImportExportModelAdmin):
+    resource_class = RoomResource
+
+admin.site.register(Room, RoomAdmin)
 admin.site.register(Cafe, CafeAdmin)
 
 
