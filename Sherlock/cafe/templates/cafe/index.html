@@ -1,6 +1,47 @@
 {% extends "cafe/layout.html" %}
 
 {% load staticfiles %}
+{% block carousel %}
+    <!-- Header Carousel-->
+        <header id="myCarousel" class="carousel slide" data-ride="carousel" style="height:70%;">
+
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                  <div class="fill" style="background-image:url({% static 'image/main1.jpg' %});"></div>
+                  <div class="carousel-caption" style="margin-bottom: 170px;">
+                      <span id="dragoon" style="font-size: 500%;">&nbsp;&nbsp;&nbsp;WHO IS SHERLOCK?</span>
+                    </div>
+              </div>
+            <div class="item">
+                <div class="fill" style="background-image:url({% static 'image/main2.jpg' %});"></div>
+                <div class="carousel-caption">
+                    <h1 style="font-size: 260%;">후 이즈 셜록은 질이 다른 방탈출 카페의 정보를 제공합니다.</h1>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url({% static 'image/main3.jpg' %});"></div>
+                <div class="carousel-caption">
+                    <h1 style="font-size: 260%;">제한시간 안에 두뇌게임에서 승리하여 탈출해보세요!</h1>
+                </div>
+            </div>
+        </div>
+
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+      </header>
+    <!--Header-->
+
+{% endblock%}
 
 {% block content %}
 
@@ -155,4 +196,3 @@
 /.row -->
 
 {% endblock %}
-
