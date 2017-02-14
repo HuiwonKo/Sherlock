@@ -14,6 +14,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=hSsPPASzl7lJUQvKDThR"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=hSsPPASzl7lJUQvKDThR&submodules=geocoder"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=hSsPPASzl7lJUQvKDThR"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=hSsPPASzl7lJUQvKDThR&submodules=geocoder"></script>
+
 
     <title>Who is Sherlock</title>
 
@@ -42,19 +45,22 @@
         .container .col-md-4 {
             padding-top: 30px;
         }
-        .modal-header, h4, .close {
-            background-color: #5cb85c;
-            color:white !important;
-            text-align: center;
-            font-size: 30px;
-        }
-        .modal-footer {
-            background-color: #f9f9f9;
+        .top{
+        position: fixed;
+        bottom:20px;
+        right:30px;
+        width:48px;
+        height:48px;
         }
     </style>
 </head>
 
 <body>
+<!--top으로 이동-->
+    <div class="top" />
+        <img src="{% static 'image/up.png' %}" alt="scroll" width="40" height="40">
+    </div>
+
 <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -138,15 +144,17 @@
                         <a href="{% url 'signup' %}">회원가입</a>
                     </li>
                     <li>
+
                     <!-- Trigger the modal with a button -->
-                        <a href="{% url 'login' %}"><button type="button" class="btn btn-default btn-lg" id="myBtn">Login</button></a>
+                        <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+
                     </li>
                     {% else %}
                     <li>
                         <a href="{% url 'profile' %}">My Page</a>
                     </li>
                     <li>
-                        <a href="{% url 'logout' %}?next={{ next }}">로그아웃</a>
+                        <a href="{% url 'logout' %}?next=/cafe/">로그아웃</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -240,6 +248,35 @@
         });
     });
 
+    </script>
+
+    <!--top로 이동-->
+    <script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var $body = $(document.body), //자주 사용하기에 캐시되게 변수에 넣어준다
+            $top = '';
+
+            $top=$('<div>') //div 를 만들고
+            .addClass('top') //top className을 주고
+            .hide() //처음에는 숨겨둔다
+            .click(function(){  // 클릭이 이벤트 할당
+                $body.animate({ scrollTop: 0 }); //animation효과로 scollTop=0으로 이동
+            })
+            .appendTo($body); // body에 top을 넣는다
+
+        //윈도우의 스크롤위치로 위로가기 버튼을 보여줘야기에 핸들러 작성
+        $(window).scroll(function(){
+            var y = $(this).scrollTop();
+
+            if(y >= 0){
+                $top.fadeIn();
+            }
+            else {
+                $top.fadeOut();
+            }
+            });
+        });
     </script>
 
 </body>
