@@ -8,7 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Who is Sherlock</title>
 
     <!-- Bootstrap Core CSS -->
@@ -36,12 +39,20 @@
         .container .col-md-4 {
             padding-top: 30px;
         }
+        .modal-header, h4, .close {
+            background-color: #5cb85c;
+            color:white !important;
+            text-align: center;
+            font-size: 30px;
+        }
+        .modal-footer {
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 
 <body>
-
-    <!-- Navigation -->
+<!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -52,18 +63,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="{% url 'cafe:index' %}">Who is Sherlock?</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="{% url 'cafe:index' %}">Home</a>
                     </li>
+                    <!--
                     <li>
                         <a href="contact.html">Contact</a>
                     </li>
-                    <!--
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -83,7 +94,7 @@
                                 <a href="portfolio-item.html">Single Portfolio Item</a>
                             </li>
                         </ul>
-                    </li>-->
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -118,19 +129,21 @@
                             </li>
                         </ul>
                     </li>
+                    -->
                     {% if not user.is_authenticated %}
                     <li>
                         <a href="{% url 'signup' %}">회원가입</a>
                     </li>
                     <li>
-                        <a href="{% url 'login' %}?next={{ request.path }}">로그인</a>
+                    <!-- Trigger the modal with a button -->
+                        <a href="{% url 'login' %}"><button type="button" class="btn btn-default btn-lg" id="myBtn">Login</button></a>
                     </li>
                     {% else %}
                     <li>
-                        <a href="{% url 'profile' %}">My Profile</a>
+                        <a href="{% url 'profile' %}">My Page</a>
                     </li>
                     <li>
-                        <a href="{% url 'logout' %}?next={{ request.path }}">로그아웃</a>
+                        <a href="{% url 'logout' %}?next={{ next }}">로그아웃</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -142,14 +155,14 @@
 
     <!-- Header Carousel-->
         <header id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!— Indicators —>
+
             <ol class="carousel-indicators">
               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
               <li data-target="#myCarousel" data-slide-to="1"></li>
               <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
 
-            <!— Wrapper for slides —>
+
             <div class="carousel-inner" role="listbox">
               <div class="item active">
                   <div class="fill" style="background-image:url({% static 'image/1.jpg' %});"></div>
@@ -170,7 +183,7 @@
                 </div>
             </div>
         </div>
-        <!— Controls —>
+
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
             <span class="icon-prev"></span>
         </a>
@@ -218,6 +231,12 @@
     $('.carousel').carousel({
         interval: 5000 //changes the speed
     })
+    $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModal").modal();
+        });
+    });
+
     </script>
 
 </body>
