@@ -1,11 +1,35 @@
 {% extends "cafe/layout.html" %}
 {% load staticfiles %}
+
+{% block extra_head %}
+    <style>
+    .loginpage {
+        text-align: center
+
+    }
+    </style>
+{% endblock %}
+
 {% block content %}
+
     <form id="login" method = "POST" >
         {% csrf_token %}
-        {{ form.as_table }}
-        <input type="submit" value="LOGIN!"/>
+        <div id='loginpage'>
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+        </div>
+        <input type="submit" value="LOGIN!!"/>
+        <input type="hidden" name='next' value="{{next}}"/>
     </form>
+
 {% endblock %}
 
 <!--href="{% url 'login' %}?next={{ request.path }}"-->

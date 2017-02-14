@@ -8,6 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=hSsPPASzl7lJUQvKDThR"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=hSsPPASzl7lJUQvKDThR&submodules=geocoder"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=hSsPPASzl7lJUQvKDThR"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=hSsPPASzl7lJUQvKDThR&submodules=geocoder"></script>
 
@@ -38,12 +46,23 @@
         .container .col-md-4 {
             padding-top: 30px;
         }
+        .top{
+        position: fixed;
+        bottom:20px;
+        right:30px;
+        width:48px;
+        height:48px;
+        }
     </style>
 </head>
 
 <body>
+<!--top으로 이동-->
+    <div class="top" />
+        <img src="{% static 'image/up.png' %}" alt="scroll" width="40" height="40">
+    </div>
 
-    <!-- Navigation -->
+<!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,18 +73,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="{% url 'cafe:index' %}">Who is Sherlock?</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="{% url 'cafe:index' %}">Home</a>
                     </li>
+                    <!--
                     <li>
                         <a href="contact.html">Contact</a>
                     </li>
-                    <!--
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -85,7 +104,7 @@
                                 <a href="portfolio-item.html">Single Portfolio Item</a>
                             </li>
                         </ul>
-                    </li>-->
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -120,19 +139,20 @@
                             </li>
                         </ul>
                     </li>
+                    -->
                     {% if not user.is_authenticated %}
                     <li>
                         <a href="{% url 'signup' %}">회원가입</a>
                     </li>
                     <li>
-                        <a href="{% url 'login' %}?next={{ request.path }}">로그인</a>
+                        <a href="{% url 'login' %}">로그인</a>
                     </li>
                     {% else %}
                     <li>
-                        <a href="{% url 'profile' %}">My Profile</a>
+                        <a href="{% url 'profile' %}">My Page</a>
                     </li>
                     <li>
-                        <a href="{% url 'logout' %}?next={{ request.path }}">로그아웃</a>
+                        <a href="{% url 'logout' %}?next={{ next }}">로그아웃</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -144,14 +164,14 @@
 
     <!-- Header Carousel-->
         <header id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!— Indicators —>
+
             <ol class="carousel-indicators">
               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
               <li data-target="#myCarousel" data-slide-to="1"></li>
               <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
 
-            <!— Wrapper for slides —>
+
             <div class="carousel-inner" role="listbox">
               <div class="item active">
                   <div class="fill" style="background-image:url({% static 'image/1.jpg' %});"></div>
@@ -172,7 +192,7 @@
                 </div>
             </div>
         </div>
-        <!— Controls —>
+
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
             <span class="icon-prev"></span>
         </a>
@@ -220,6 +240,41 @@
     $('.carousel').carousel({
         interval: 5000 //changes the speed
     })
+    $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModal").modal();
+        });
+    });
+
+    </script>
+
+    <!--top로 이동-->
+    <script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var $body = $(document.body), //자주 사용하기에 캐시되게 변수에 넣어준다
+            $top = '';
+
+            $top=$('<div>') //div 를 만들고
+            .addClass('top') //top className을 주고
+            .hide() //처음에는 숨겨둔다
+            .click(function(){  // 클릭이 이벤트 할당
+                $body.animate({ scrollTop: 0 }); //animation효과로 scollTop=0으로 이동
+            })
+            .appendTo($body); // body에 top을 넣는다
+
+        //윈도우의 스크롤위치로 위로가기 버튼을 보여줘야기에 핸들러 작성
+        $(window).scroll(function(){
+            var y = $(this).scrollTop();
+
+            if(y >= 0){
+                $top.fadeIn();
+            }
+            else {
+                $top.fadeOut();
+            }
+            });
+        });
     </script>
 
 </body>
