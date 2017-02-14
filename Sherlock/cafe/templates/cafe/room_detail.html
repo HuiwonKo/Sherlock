@@ -13,7 +13,9 @@
         <div class="row">
             <div class="col-md-1 text-center"></div>
             <div class="col-md-5" >
+                {% if room.image %}
                     <img class="img-responsive img-hover" src="{{ room.image.url }}" alt="">
+                {% endif %}
             </div>
 
             <div class="col-md-6">
@@ -60,5 +62,29 @@
             </script>
         </div>
         <!-- /.row -->
+
+<!-- 댓글 작성 -->
+<form action="{% url 'cafe:review_new' room.pk %}" method="post">
+    {% csrf_token %}
+    <table class="table table-bordered table-hover">
+        {{ review_form.content }}
+    </table>
+    <input type="submit" class="btn btn-primary btn-block" value="댓글 쓰기"/>
+</form>
+
+
+<ul>
+    {% for review in room.cafe_review_set.all %}
+    <li>
+        <p><blod><small> 작성자 : {{ review.user }}</small></blod></p>
+        <p>{{ review.content }}
+            {% if review.user == request.user %}
+            <a href = "{% url 'cafe:review_edit' room.pk review.pk %}" > Edit </a>
+            <a href = "{% url 'cafe:review_delete' room.pk review.pk %}" > 삭제 </a> </p>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
 
 {% endblock %}

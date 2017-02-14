@@ -16,4 +16,9 @@ class CafeAdmin(ImportExportModelAdmin):
 
 admin.site.register(Room)
 admin.site.register(Cafe, CafeAdmin)
-admin.site.register(Review)
+
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['room','user','content']
+
+admin.site.register(Review, ReviewAdmin)

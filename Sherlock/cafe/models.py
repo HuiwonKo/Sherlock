@@ -1,6 +1,7 @@
 from django.db import models
 from .choices import *
-
+from django.core.urlresolvers import reverse
+from django.conf import settings
 # Create your models here.
 
 class Cafe(models.Model):
@@ -33,17 +34,24 @@ class Room(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('cafe:room_detail', args=[self.pk])
+
 class Review(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="review_user")
     room = models.ForeignKey(Room, related_name="cafe_review_set")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일시")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="업데이트 일시")
     score_hard = models.IntegerField(default=0, null=True, verbose_name="방 난이도 점수")
     score_star = models.IntegerField(default=0, null=True, verbose_name="방 별점")
-    author = models.CharField(max_length=20, verbose_name="댓글 작성자")
+    #author = models.CharField(max_length=20, verbose_name="댓글 작성자")
     content = models.CharField(max_length=150, verbose_name="댓글 내용")
 
     def __str__(self):
         return self.author
+
+    class Meta:
+        ordering = ['-id']
 
 
 """

@@ -4,4 +4,7 @@ from .models import Cafe, Room, Review
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ('author','content', 'score_hard', 'score_star',)
+        fields = ['content']
+        widgets = {
+            'content' : forms.Textarea(attrs = {'class':'form-control', 'row':3})
+        }

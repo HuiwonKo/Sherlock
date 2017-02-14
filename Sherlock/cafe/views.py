@@ -28,46 +28,56 @@ def index(request):
 
 def room_detail(request,pk):
     room = get_object_or_404(Room, pk=pk)
+    review_form = ReviewForm()
     #review = get_object_or_404(Review, pk= room.pk)
-    return render(request, "cafe/room_detail.html", {
-        "room":room,
+
+    return render(request, 'cafe/room_detail.html', {
+        'room':room, 'review_form':review_form,
         })
 
-
 @login_required
-def review_new(request,pk):
-
-    review = get_object_or_404(Review, pk=pk)
+def review_new(request,room_pk):
+    room = get_object_or_404(Room, pk=room_pk)
     if request.method == "POST":
         reviewForm = ReviewForm(request.POST)
         if reviewForm.is_valid():
             review = reviewForm.save(commit=False)
-            review.author = request.user
+            review.user = request.user
             review.created_at = timezone.now()
+            review.room = room
             review.save()
-            messages.success(request,"리뷰가 성공적으로 등록되었습니다.")
-            return redirect(room_detail, pk=pk)
+            print("###### save finished #######")
+            messages.success(request, "리뷰가 성공적으로 등록되었습니다.")
+            return redirect(review.room)
     else:
         reviewForm = ReviewForm()
-    return render(request, 'room_detail.html',{'reviewForm':reviewForm , 'review':review})
+    return render(request, 'cafe/room_detail.html', {'reviewForm':reviewForm , })
 
 @login_required
-def review_edit(request,pk):
-    review = get_object_or_404(Review, pk=pk)
+def review_edit(request, room_pk, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+    if review.user != request.user:
+        messages.warning(request, '댓글 작성자만 수정가능합니다')
+        return redirect(review.room)
     if request.method == "POST":
         reviewForm = ReviewForm(request.POST, instance=review)
         if reviewForm.is_valid():
-            review = reviewForm.save(commit=False)
-            review.author = request.user
-            review.save()
-            return redirect(room_detail, pk=pk)
+            review = reviewForm.save()
+            messages.success(request, "리뷰가 성공적으로 수정되었습니다.")
+            return redirect(review.room)
+    else:
+        reviewForm = ReviewForm(instance=review)
+    return render(request, 'cafe/review_edit.html', {'reviewForm':reviewForm,})
 
 @login_required
-def review_delete(request,pk):
-    review = get_object_or_404(Review, pk=pk)
-    if request.user != review.author:
-        messages.ERROR(request,"자신이 작성한 리뷰만 삭제할 수 있습니다.")
-        return redirect(room_detail, pk=pk)
-    review.delete()
-    messages.error(request,"리뷰가 삭제되었습니다.")
-    return redirect(room_detail)
+def review_delete(request, room_pk, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+    if request.user != review.user:
+        messages.warning(request, "자신이 작성한 리뷰만 삭제할 수 있습니다.")
+        return redirect(review.room)
+    if request.method == "POST":
+        review.delete()
+        messages.success(request,"리뷰가 삭제되었습니다.")
+        return redirect(review.room)
+    else:
+        return render(request, 'cafe/review_confirm_delete.html', {'review':review})
