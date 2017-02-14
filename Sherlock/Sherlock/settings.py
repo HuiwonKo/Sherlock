@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'cafe',
     'accounts',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,10 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -114,6 +119,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# django-import-export
+# http://django-import-export.readthedocs.io/en/stable/installation.html
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 
 # Static files (CSS, JavaScript, Images)
