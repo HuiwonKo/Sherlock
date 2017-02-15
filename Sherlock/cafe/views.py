@@ -6,6 +6,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Cafe, Room, Review, Like
 from .forms import ReviewForm
+from django.contrib.auth.models import AnonymousUser
 
 
 def index(request):
@@ -29,7 +30,10 @@ def room_detail(request,pk):
     room = get_object_or_404(Room, pk=pk)
     review_form = ReviewForm()
     number_of_likes = room.room_like_set.all().count()
-    user_likes_this = room.room_like_set.filter(user=request.user) and True or False
+    if request.user.id == None:
+        user_likes_this = False
+    else:
+        user_likes_this = room.room_like_set.filter(user=request.user) and True or False
     #review = get_object_or_404(Review, pk= room.pk)
     return render(request, 'cafe/room_detail.html', {
         'room':room, 'review_form':review_form,
@@ -40,7 +44,6 @@ def room_detail(request,pk):
 @login_required
 def like(request, room_pk):
     #new_like, created = Like.objects.get_or_create(user=request.user, room__pk=room_pk)
-
     try:
         new_like = Like.objects.get(user=request.user, room__pk=room_pk)
         created = False

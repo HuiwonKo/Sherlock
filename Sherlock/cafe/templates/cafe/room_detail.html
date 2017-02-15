@@ -92,11 +92,15 @@ $( document ).ready(function() {
 <p style="text-align: center;" class="heart">
     <a href="{% url 'cafe:like' room.pk %}"><i class="fa fa-heart" aria-hidden="true"></i></a>
     <p style="text-align: center;">{{number_of_likes}}명이 좋아합니다.<br>
+    {% if user.id == None %}
+        LOGIN for like!
+    {% else %}
         {% if user_likes_this %}
             You too!
         {% else %}
             Not me
         {% endif %}
+    {% endif %}
     </p>
 </p>
 
