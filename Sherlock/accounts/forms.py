@@ -10,9 +10,9 @@ from .models import Profile, GENDER_CHOICES
 '''
 class SignupForm(UserCreationForm):
 
-    nickname = forms.CharField(required=False, label='닉네임')
-    gender = forms.ChoiceField(label='성별', choices=GENDER_CHOICES)
-    phone = forms.IntegerField(required=False, label='전화번호')
+    nickname = forms.CharField(required=False, label='Nickname')
+    gender = forms.ChoiceField(label='Gender', choices=GENDER_CHOICES)
+    phone = forms.IntegerField(required=False, label='Phone number')
 
 '''
     def save(self):

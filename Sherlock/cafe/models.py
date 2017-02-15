@@ -20,14 +20,11 @@ class Cafe(models.Model):
 
 class Room(models.Model):
     cafe = models.ForeignKey(Cafe, related_name="cafe_room_set") # cafe : room = 1 : N
-    score_star = models.IntegerField(default=0, verbose_name="방 별점")
-    #score_hard = models.IntegerField(default=0, verbose_name="방 난이도 점수")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일시")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="업데이트 일시")
     name = models.CharField(max_length=20, verbose_name="방 이름")
     number = models.IntegerField(default=1, verbose_name="방 번호")
     level = models.IntegerField(choices=LEVEL_CHOICES, default=0, verbose_name="방 레벨")
-    #theme = models.CharField(max_length=50, verbose_name="방 테마")
     image = models.ImageField(blank=True, null=True, verbose_name="방 이미지")
     story = models.TextField(blank = True, verbose_name="방 설명")
 
@@ -42,16 +39,26 @@ class Review(models.Model):
     room = models.ForeignKey(Room, related_name="cafe_review_set")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일시")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="업데이트 일시")
-    score_hard = models.IntegerField(default=0, null=True, verbose_name="방 난이도 점수")
-    score_star = models.IntegerField(default=0, null=True, verbose_name="방 별점")
-    #author = models.CharField(max_length=20, verbose_name="댓글 작성자")
     content = models.CharField(max_length=150, verbose_name="댓글 내용")
 
     def __str__(self):
-        return self.author
+        return self.user
 
     class Meta:
         ordering = ['-id']
+
+
+class Evaluation(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="score_user")
+    room = models.ForeignKey(Room, related_name="cafe_evaluation_set")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일시")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="업데이트 일시")
+    eval_good = models.IntegerField(default=0, verbose_name="좋아요")
+    eval_difficult = models.IntegerField(default=0, verbose_name="어려워요")
+    eval_angry = models.IntegerField(default=0, verbose_name="화나요")
+
+    def __str__(self):
+        return self.user
 
 
 """
