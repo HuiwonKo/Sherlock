@@ -17,7 +17,7 @@ class RoomResource(resources.ModelResource):
     class Meta:
         model = Room
         fields = (
-        'id', 'cafe', 'score_star', 'name', 'number', 'level', 'story', 'image'
+        'id', 'cafe', 'score_star', 'name', 'number', 'level', 'image', 'story',
         )
 
 class RoomAdmin(ImportExportModelAdmin):
