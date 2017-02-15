@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .models import Cafe, Room, Review
+from .models import Cafe, Room, Review, Like
 from .forms import ReviewForm
 
 
@@ -29,11 +29,35 @@ def index(request):
 def room_detail(request,pk):
     room = get_object_or_404(Room, pk=pk)
     review_form = ReviewForm()
+    number_of_likes = room.room_like_set.all().count()
+    user_likes_this = room.room_like_set.filter(user=request.user) and True or False
     #review = get_object_or_404(Review, pk= room.pk)
-
     return render(request, 'cafe/room_detail.html', {
         'room':room, 'review_form':review_form,
+        'number_of_likes' : number_of_likes,
+        'user_likes_this' : user_likes_this,
         })
+
+@login_required
+def like(request, room_pk):
+    #new_like, created = Like.objects.get_or_create(user=request.user, room__pk=room_pk)
+
+    try:
+        new_like = Like.objects.get(user=request.user, room__pk=room_pk)
+        created = False
+    except Like.DoesNotExist:
+        room = Room.objects.get(pk=room_pk)
+        new_like = Like(user=request.user, room=room)
+        new_like.save()
+        created = True
+    if created:
+        messages.success(request, "좋아요 되었습니다.")
+        return redirect(new_like.room)
+    else:
+        messages.success(request, "취소 되었습니다..")
+        new_like.delete()
+        return redirect(new_like.room)
+
 
 @login_required
 def review_new(request,room_pk):

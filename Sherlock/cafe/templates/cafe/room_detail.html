@@ -64,17 +64,51 @@
             </script>
         </div>
         <!-- /.row -->
-
-
 <!-- 댓글 작성 -->
+
+<hr/>
+<!--하트 주기
+<style>
+    .heart {font-size:0; letter-spacing:-4px;}
+    .heart a {
+        font-size:22px;
+        letter-spacing:0;
+        display:inline-block;
+        margin-left:5px;
+        color:#ccc;
+        text-decoration:none; }
+    .heart a:first-child {margin-left:0;}
+    .heart a.on {color:#777;}
+</style>
+<script>
+$( document ).ready(function() {
+    $( ".heart a" ).click(function() {
+        $(this).addClass("on");
+        return false;
+    });
+});
+</script>
+-->
+<p style="text-align: center;" class="heart">
+    <a href="{% url 'cafe:like' room.pk %}"><i class="fa fa-heart" aria-hidden="true"></i></a>
+    <p style="text-align: center;">{{number_of_likes}}명이 좋아합니다.<br>
+        {% if user_likes_this %}
+            You too!
+        {% else %}
+            Not me
+        {% endif %}
+    </p>
+</p>
+
+<!--
+<button class="btn btn-default" style="width: 100px; background-color: white; color:red; font-size:20px;">
+-->
+<div class="comment" style="text-align: center;">
 <form action="{% url 'cafe:review_new' room.pk %}" method="post">
     {% csrf_token %}
-    <table class="table table-bordered table-hover">
-        {{ review_form.content }}
-    </table>
-    <input type="submit" class="btn btn-primary btn-block" value="댓글 쓰기"/>
+    {{ review_form.content }}<input type="submit" class="btn btn-primary btn-lg" value="댓글 쓰기"/>
 </form>
-
+</div>
 
 <ul>
     {% for review in room.cafe_review_set.all %}

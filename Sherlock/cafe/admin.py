@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cafe, Room, Review
+from .models import Cafe, Room, Review, Like
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
@@ -31,3 +31,4 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ['room','user','content']
 
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(Like)

@@ -42,23 +42,19 @@ class Review(models.Model):
     content = models.CharField(max_length=150, verbose_name="댓글 내용")
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
     class Meta:
         ordering = ['-id']
 
 
-class Evaluation(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="score_user")
-    room = models.ForeignKey(Room, related_name="cafe_evaluation_set")
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일시")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="업데이트 일시")
-    eval_good = models.IntegerField(default=0, verbose_name="좋아요")
-    eval_difficult = models.IntegerField(default=0, verbose_name="어려워요")
-    eval_angry = models.IntegerField(default=0, verbose_name="화나요")
+class Like(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="like_user_set")
+    room = models.ForeignKey(Room, related_name="room_like_set")
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 
 """
