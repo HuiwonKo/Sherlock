@@ -5,31 +5,31 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">{{ room.name }}</h1>
+                <h1>{{ room.name }}</h1>
+                <hr/>
             </div>
         </div>
         <!-- /.row -->
         <!-- Blog Post Row -->
         <div class="row">
-            <div class="col-md-1 text-center"></div>
-            <div class="col-md-5" >
-            {% if room.image %}
-                    <img class="img-responsive img-hover" src="{{ room.image.url }}" alt="">
-            {% endif %}
+            <div class="col-md-5" style="border-style: 5px solid blue;">
+                {% if room.image %}
+                        <img class="img-responsive img-hover" src="{{ room.image.url }}" alt="">
+                {% endif %}
             </div>
 
             <div class="col-md-6">
-                <h3>
-                    {{ room.name }} 스토리
-                </h3>
-                <p>
-                    {{ room.story }}
-                </p>
-                <a class="btn btn-primary" href="http://{{room.cafe.url}}" target = "_blank">예약하러가기<i class="fa fa-angle-right"></i></a>
+                <h3 style="margin-bottom: 20px; padding-bottom: 10px;">STORY</h3><hr>
+
+                <p class="width-restricted-story" style="font-size: 16px; margin-left:auto; margin-right:auto;">{{room.story| linebreaks}}</p>
+
+                <br>
+                <a class="btn btn-info " href="http://{{room.cafe.url}}" target = "_blank">지금 바로 예약&nbsp<i class="fa fa-angle-right"></i></a>
                 <p></p>
             </div>
+            <hr>
 
-            <div id="map" style="width:600px;height:300px;margin:auto;"></div>
+            <div id="map" style="width:600px;height:300px;margin:auto;"></div><!--지도-->
             <script>
             var cafe_address = "{{ room.cafe.address }}";
             var map = new naver.maps.Map('map', {
@@ -100,6 +100,7 @@ $( document ).ready(function() {
     </p>
 </p>
 
+<<<<<<< Updated upstream
 <!--
 <button class="btn btn-default" style="width: 100px; background-color: white; color:red; font-size:20px;">
 -->
@@ -109,6 +110,22 @@ $( document ).ready(function() {
     {{ review_form.content }}<input type="submit" class="btn btn-primary btn-lg" value="댓글 쓰기"/>
 </form>
 </div>
+=======
+    <!-- 댓글 작성 -->
+    <div id="map" style="width:600px;height:300px;margin:auto;">
+        <form action="{% url 'cafe:review_new' room.pk %}" method="post">
+            {% csrf_token %}
+            <div class="col-md-9">
+                <table class="table table-bordered table-hover">
+                    {{ review_form.content }}
+                </table>
+            </div>
+            <div class="col-md-3">
+            <input type="submit" class="btn btn-primary btn-block" value="댓글 쓰기"/></div>
+        </form>
+    </div>
+
+>>>>>>> Stashed changes
 
 <ul>
     {% for review in room.cafe_review_set.all %}
