@@ -214,22 +214,6 @@
         </div>
         </section>
         <!-- /.row -->
-
-        <!-- Pager >
-        <div class="pagination">
-            <ul class="pager">
-                {% if room_list.has_previous %}
-                <li class="previous"><a href="?{{page_request_var}}={{room_list.previous_page_number}}">&larr; Previous</a></li>
-                {% endif %}
-                <span class="current">
-                  Page{{room_list.number}} of {{room_list.paginator.num_pages}}
-                </span>
-                {% if room_list.has_next%}
-                <li class="next"><a href="?{{page_request_var}}={{room_list.next_page_number}}">Next &rarr;</a></li>
-                {% endif %}
-            </ul>
-        </div>
-        -->
         {% endif %}
 
 {% endblock %}

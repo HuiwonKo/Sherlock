@@ -3,33 +3,103 @@
 {% block content %}
     <!-- Page Content -->
 
-        <div class="row">
+        <div class="container">
             <div class="col-lg-12">
-                <h1>{{ room.name }}</h1>
+                <center><h1>{{ room.name }}</h1></center>
                 <hr/>
             </div>
         </div>
         <!-- /.row -->
         <!-- Blog Post Row -->
-        <div class="row">
-            <div class="col-md-5" style="border-style: 5px solid blue;">
+        <div class="container">
+        <!--style>
+            table, th, td { border:1px solid black; }
+        </style-->
+
+
+        <table style="width:900px; height:1000px; margin: auto">
+            <tr>
+                <td rowspan="2" style="width:500px; height:300px;">
+                    <img src="{% static 'image/star.png' %}">
+                <!--
                 {% if room.image %}
                         <img class="img-responsive img-hover" src="{{ room.image.url }}" alt="">
                 {% endif %}
-            </div>
+                -->
+                </td>
 
-            <div class="col-md-6">
-                <h3 style="margin-bottom: 20px; padding-bottom: 10px;">STORY</h3><hr>
+                <td style="width:500px; height:40px;">
+                    <h3 style="margin-left: 20px;">STORY &nbsp<a class="btn btn-info " href="http://{{room.cafe.url}}" target = "_blank">지금 바로 예약&nbsp<i class="fa fa-angle-right"></i></a></h3>
 
-                <p class="width-restricted-story" style="font-size: 16px; margin-left:auto; margin-right:auto;">{{room.story| linebreaks}}</p>
+                </td>
+            </tr>
 
+            <tr>
+                <td style="width:500px; height:100px;">
+                    <h7 style="margin-left:20px;">&nbsp&nbsp&nbsp{{room.story | linebreaks}}</h>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><div id="map" style="width:900px;height:350px;margin:auto;"></div><!--지도--></td>
+
+            </tr>
+
+            <tr>
+                <td colspan="2">
                 <br>
-                <a class="btn btn-info " href="http://{{room.cafe.url}}" target = "_blank">지금 바로 예약&nbsp<i class="fa fa-angle-right"></i></a>
-                <p></p>
-            </div>
-            <hr>
+                    <p style="text-align: center;" class="heart">
+                        <a href="{% url 'cafe:like' room.pk %}"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                        <p style="text-align: center;">
+                            {{number_of_likes}}명이 좋아합니다.<br>
+                            {% if user_likes_this %}
+                                You too!
+                            {% else %}
+                                Not me
+                            {% endif %}
+                        </p>
+                    </p>
+                </td>
+            </tr>
 
-            <div id="map" style="width:600px;height:300px;margin:auto;"></div><!--지도-->
+            <tr>
+                <td colspan="2">
+                    <form action="{% url 'cafe:review_new' room.pk %}" method="post">
+                        {% csrf_token %}
+                        <div class="col-md-10">
+                            <table class="table table-bordered table-hover">
+                                {{ review_form.content }}
+                            </table>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" class="btn btn-primary btn-block" value="댓글 쓰기"/>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <ul>
+                        {% for review in room.cafe_review_set.all %}
+                        <li>
+                            {{ review.user }} : &nbsp <small>{{ review.content }}</small>&nbsp&nbsp&nbsp
+
+                            {% if review.user == request.user %}
+                                    <a href = "{% url 'cafe:review_edit' room.pk review.pk %}"><img src="{% static 'image/edit.png' %}" width="15" height="15"></a>
+                                    <a href = "{% url 'cafe:review_delete' room.pk review.pk %}"><img src="{% static 'image/delete.png' %}" width="15" height="15"></a>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+
+
+        </table>
+
+
+
             <script>
             var cafe_address = "{{ room.cafe.address }}";
             var map = new naver.maps.Map('map', {
@@ -64,80 +134,8 @@
             </script>
         </div>
         <!-- /.row -->
-<!-- 댓글 작성 -->
 
-<hr/>
-<!--하트 주기
-<style>
-    .heart {font-size:0; letter-spacing:-4px;}
-    .heart a {
-        font-size:22px;
-        letter-spacing:0;
-        display:inline-block;
-        margin-left:5px;
-        color:#ccc;
-        text-decoration:none; }
-    .heart a:first-child {margin-left:0;}
-    .heart a.on {color:#777;}
-</style>
-<script>
-$( document ).ready(function() {
-    $( ".heart a" ).click(function() {
-        $(this).addClass("on");
-        return false;
-    });
-});
-</script>
--->
-<p style="text-align: center;" class="heart">
-    <a href="{% url 'cafe:like' room.pk %}"><i class="fa fa-heart" aria-hidden="true"></i></a>
-    <p style="text-align: center;">{{number_of_likes}}명이 좋아합니다.<br>
-        {% if user_likes_this %}
-            You too!
-        {% else %}
-            Not me
-        {% endif %}
-    </p>
-</p>
 
-<<<<<<< Updated upstream
-<!--
-<button class="btn btn-default" style="width: 100px; background-color: white; color:red; font-size:20px;">
--->
-<div class="comment" style="text-align: center;">
-<form action="{% url 'cafe:review_new' room.pk %}" method="post">
-    {% csrf_token %}
-    {{ review_form.content }}<input type="submit" class="btn btn-primary btn-lg" value="댓글 쓰기"/>
-</form>
-</div>
-=======
-    <!-- 댓글 작성 -->
-    <div id="map" style="width:600px;height:300px;margin:auto;">
-        <form action="{% url 'cafe:review_new' room.pk %}" method="post">
-            {% csrf_token %}
-            <div class="col-md-9">
-                <table class="table table-bordered table-hover">
-                    {{ review_form.content }}
-                </table>
-            </div>
-            <div class="col-md-3">
-            <input type="submit" class="btn btn-primary btn-block" value="댓글 쓰기"/></div>
-        </form>
-    </div>
 
->>>>>>> Stashed changes
-
-<ul>
-    {% for review in room.cafe_review_set.all %}
-    <li>
-        <p><blod><small> 작성자 : {{ review.user }}</small></blod></p>
-        <p>{{ review.content }}
-            {% if review.user == request.user %}
-            <a href = "{% url 'cafe:review_edit' room.pk review.pk %}" > Edit </a>
-            <a href = "{% url 'cafe:review_delete' room.pk review.pk %}" > 삭제 </a> </p>
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
 
 {% endblock %}
