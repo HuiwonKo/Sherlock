@@ -19,6 +19,7 @@ def index(request):
         room_list = Room.objects.filter(cafe__station__in = station_key)
     elif level_key:
         room_list = Room.objects.filter(level__in = level_key)
+
     return render(request, "cafe/index.html", {
         'room_list':room_list,
         'stations':station_key,
