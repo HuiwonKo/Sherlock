@@ -1,6 +1,5 @@
 .DS_Store
 /media
-*/migrations
 db.sqlite
 db.sqlite3
 __pycache__

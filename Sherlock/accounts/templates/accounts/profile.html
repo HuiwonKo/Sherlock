@@ -2,19 +2,19 @@
 {% load staticfiles %}
 
 {% block content %}
-<meta property="fb:pages" content="1641311652800771" />
-<meta name="google-site-verification" content="5yOe6b_e_3rr7vNDwgXJw_8wLZQGx4lJ_V48KNPrqkA" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" type="text/css" media="all" href="/inc/www/css/default.css" />
-<link rel="stylesheet" type="text/css" media="all" href="/inc/www/css/content.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script type="text/javascript" src="//static.criteo.net/js/ld/publishertag.js"></script>
-<link rel="stylesheet" href="/inc/ext/jqueryui/jquery-ui.css" />
-<script type="text/javascript" src="/inc/ext/jqueryui/jquery-ui.js"></script>
-<script src="/inc/ext/placeholder/jquery.placeholder.js"></script>
-<script src="/inc/www/js/common.js"></script>
-<script src="/inc/www/js/search.js"></script>
+    <meta property="fb:pages" content="1641311652800771" />
+    <meta name="google-site-verification" content="5yOe6b_e_3rr7vNDwgXJw_8wLZQGx4lJ_V48KNPrqkA" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" media="all" href="/inc/www/css/default.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="/inc/www/css/content.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//static.criteo.net/js/ld/publishertag.js"></script>
+    <link rel="stylesheet" href="/inc/ext/jqueryui/jquery-ui.css" />
+    <script type="text/javascript" src="/inc/ext/jqueryui/jquery-ui.js"></script>
+    <script src="/inc/ext/placeholder/jquery.placeholder.js"></script>
+    <script src="/inc/www/js/common.js"></script>
+    <script src="/inc/www/js/search.js"></script>
     <style>
         ul{
            list-style:none;
@@ -33,6 +33,7 @@
     <meta name="naver-site-verification" content="ed2b6971b315235f61397574dff7222c7677a718"/>
     <script src="/inc/ext/raty/jquery.raty.js"></script>
     <script src="/inc/www/js/movie.nzreview.js"></script>
+
     <script>
     $(function(){
         $('.mov_star_li')
@@ -45,34 +46,35 @@
     });
 
     </script>
-<div id="container">
-    {% if user.review_user.all %}
-    <div id="content" class="movie mov_star">
-        <ul class="mov_star_list">
-        {% for review in user.review_user.all %}
-            <li id="room_review_list" class="mov_star_li" data-movie-id="49866">
-                <img src="{% static 'image/test/a.jpg' %}" alt="" class="thumb" />
-                <ul class="mov_star_area">
-                    <li>전체평점<span class="num">#전체평점구현#</span></li>
-                    <li>나의평점<span class="num">{{review.score_star}}</span></li>
-                    <li>리뷰<span class="num">{{review.content}}</span></li>
-                </ul>
-                <!-- 마우스 오버시 보이는 부분 -->
-                <div class="over">
-                    <p class="name" >{{review.room.name}}</p>
-                    <div class="btnArea">
-                        <a href="{% url 'cafe:review_edit' review.room.pk review.pk %}" class="btn btn_review_write"><button class="btn btn-default">리뷰수정</button></a>
-                        <span class="bar">|</span>
-                        <a href="{% url "cafe:room_detail" review.room.pk %}" class="btn"><button class="btn btn-default">자세히보기</button></a>
+
+    <div id="container">
+        {% if user.review_user.all %}
+        <div id="content" class="movie mov_star">
+            <ul class="mov_star_list">
+            {% for review in user.review_user.all %}
+                <li id="room_review_list" class="mov_star_li" data-movie-id="49866">
+                    <img src="{% static 'image/test/a.jpg' %}" alt="" class="thumb" />
+                    <ul class="mov_star_area">
+                        <li>전체평점<span class="num">#전체평점구현#</span></li>
+                        <li>나의평점<span class="num">{{review.score_star}}</span></li>
+                        <li>리뷰<span class="num">{{review.content}}</span></li>
+                    </ul>
+                    <!-- 마우스 오버시 보이는 부분 -->
+                    <div class="over" style="display: none;">
+                        <p class="name" >{{review.room.name}}</p>
+                        <div class="btnArea">
+                            <a href="{% url 'cafe:review_edit' review.room.pk review.pk %}" class="btn btn_review_write"><button class="btn btn-default">리뷰수정</button></a>
+                            <span class="bar">|</span>
+                            <a href="{% url "cafe:room_detail" review.room.pk %}" class="btn"><button class="btn btn-default">자세히보기</button></a>
+                        </div>
                     </div>
-                </div>
-                <!-- //마우스 오버시 보이는 부분 -->
-            </li>
-       {% endfor %}
-       </ul>
-        <!-- //영화목록 -->
+                    <!-- //마우스 오버시 보이는 부분 -->
+                </li>
+           {% endfor %}
+           </ul>
+            <!-- //영화목록 -->
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
-</div>
 
 {% endblock %}
