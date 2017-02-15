@@ -18,18 +18,8 @@ def index(request):
         room_list = Room.objects.filter(cafe__station__in = station_key)
     elif level_key:
         room_list = Room.objects.filter(level__in = level_key)
-    paginator = Paginator(room_list, 5)
-    page_request_var = 'page'
-    page = request.POST.get(page_request_var)
-    try:
-        room_list_paginate = paginator.page(page)
-    except PageNotAnInteger:
-        room_list_paginate = paginator.page(1)
-    except EmptyPage:
-        room_list_paginate = paginator.page(paginator.num_pages)
     return render(request, "cafe/index.html", {
-        'room_list':room_list_paginate,
-        'page_request_var':page_request_var,
+        'room_list':room_list,
         'stations':station_key,
         'levels':level_key,
         })
