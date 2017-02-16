@@ -62,14 +62,14 @@
 </style>
         <form method="POST" action="#search">
         {% csrf_token %}
-            <div class="container" style="margin-left:170px;">
-                <div class="col-md-6">
+            <div class="container" style="margin-left:auto; margin-right: auto;">
+                <div class="col-md-9">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background-color:#5bc0de;">
-                            <h4 style="color:white;" ><center>주변 지하철역</center></h4>
+                            <h4 style="color:white; font-size: 2rem;" ><center>주변 지하철역</center></h4>
                         </div>
                         <div class="panel-body">
-                            <table width=450 height=190>
+                            <table width=450 height=190 align=center>
                             <tr>
                                 <td><label for="1"><input type="checkbox" name="station" value="1" id="1">강남역</label></td>
                                 <td><label for="2"><input type="checkbox" name="station" value="8" id="2">성신여대입구역</label></td>
@@ -109,13 +109,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background-color:#5bc0de;">
-                            <h4 style="color:white;"><center>탈출 성공률</center></h4>
+                            <h4 style="color:white; font-size: 2rem;"><center>탈출 성공률</center></h4>
                         </div>
                         <div class="panel-body">
-                        <table width=200 height=190>
+                        <table width=100 height=190 align=center>
                             <tr>
                                 <td><label for="22"><input type="checkbox" name="level" value="1" id="22">10%미만</label></td>
                             </tr>
@@ -136,10 +136,14 @@
                             </tr>
                         </table>
                         </div>
+
                     </div>
+
                 </div>
+
+
             </div>
-            <input type="submit" class="btn btn-info btn-block" style="width:730px; height:60px; margin-left:200px;" value="Search" />
+             <input type="submit" class="btn btn-info btn-block" style="font-size: 2.3rem; width:730px; height:60px; margin-left:auto; margin-right: auto;" value="Search" />
         </form>
 
 
