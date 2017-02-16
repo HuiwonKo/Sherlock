@@ -16,31 +16,22 @@
             table, th, td { border:1px solid black; }
         </style-->
 
-            <div class="col-md-6">
-                <h3>
-                    {{ room.name }} 스토리
-                </h3>
-                <p>
-                    {{ room.story }}
-                </p>
-                <a class="btn btn-primary" href="tel:{{ room.cafe.phone }}" target = "_blank">전화예약<i class="fa fa-angle-right"></i></a>
-                <a class="btn btn-primary" href="http://{{ room.cafe.url }}" target = "_blank">홈페이지예약<i class="fa fa-angle-right"></i></a>
-                <p></p>
-            </div>
-
             <table style="width:900px; height:1000px; margin: auto">
                 <tr>
                     <td rowspan="2" style="width:500px; height:300px;">
-                        <img src="{% static 'image/star.png' %}">
-                    <!--
+                        <!--img src="{% static 'image/star.png' %}"-->
+
                     {% if room.image %}
                             <img class="img-responsive img-hover" src="{{ room.image.url }}" alt="">
                     {% endif %}
-                    -->
+
                     </td>
 
                     <td style="width:500px; height:40px;">
-                        <h3 style="margin-left: 20px;">STORY &nbsp;<a class="btn btn-info " href="http://{{room.cafe.url}}" target = "_blank">지금 바로 예약&nbsp;<i class="fa fa-angle-right"></i></a></h3>
+                        <h3 style="margin-left: 20px;">STORY &nbsp;
+                            <a class="btn btn-info " href="http://{{room.cafe.url}}" target = "_blank">홈페이지 예약&nbsp;<i class="fa fa-angle-right"></i></a>
+                            <a class="btn btn-info" href="tel:{{ room.cafe.phone }}" target = "_blank">전화 예약<i class="fa fa-angle-right"></i></a>
+                        </h3>
 
                     </td>
                 </tr>
