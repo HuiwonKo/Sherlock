@@ -78,14 +78,14 @@
                             <div id="room_review_list" style="padding-left: 15px;">
                                 <h4>{{review.room.name}}</h4>
                                 <a href="{% url "cafe:room_detail" review.room.pk %}" >
-                                    <img src="{% static 'image/main1.jpg' %}" style="width: 190px; padding-bottom: 10px;" alt="" class="thumb" />
+                                    <img src="{{ review.room.image.url }}" style="width: 190px;  padding-bottom: 10px;" alt="" class="thumb" />
                                 </a>
                                 <p>{{review.room.room_like_set.all.count}} likes</p>
                                     <textarea style="width:140px; height: 80px;">{{review.content}}</textarea>
                                     <a href="{% url 'cafe:review_edit' review.room.pk review.pk %}" class="btn btn_review_write">
                                 <button class="btn btn-default btn-xs">수정</button></a>
                             </div>
-                            &nbsp
+                            &nbsp;
                         {% endfor %}
                     {% endif %}
             </td>
@@ -94,9 +94,9 @@
                     {% if user.like_user_set.all %}
                         {% for like in user.like_user_set.all %}
                             <div>
-                                <h5><i class="fa fa-heart" aria-hidden="true"></i>&nbsp{{like.room.name}}</h5>
+                                <h5><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;{{like.room.name}}</h5>
                                 <a href="{% url "cafe:room_detail" like.room.pk %}" >
-                                    <img src="{% static 'image/main1.jpg' %}" style="width: 190px; padding-bottom: 10px;" alt="" class="thumb" />
+                                    <img src="{{ like.room.image.url }}" style="width: 190px; padding-bottom: 10px;" alt="" class="thumb" />
                                 </a>
                                 <!--{{like.room.room_like_set.all.count}}likes-->
                                 <br>
