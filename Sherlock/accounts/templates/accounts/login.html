@@ -57,34 +57,21 @@
 {% endblock%}
 
 {% block content %}
-
 <div style="width:300px; height:300px; margin:auto;">
     <form id="login" method = "POST" >
         {% csrf_token %}
         <div id='loginpage'>
-
-
-        <!--
-        <table>
-            <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
-        </table>
-        </div>
-        <input type="submit" value="LOGIN!!"/>-->
-    <p class="lead text-align-center" style="text-align: center;"><strong>Login</strong></p>
-    <table>
-    {% bootstrap_form form %}
-    </table>
-     {% buttons %}
-        <button type="submit" class="btn btn-primary pull-right">
-        {% bootstrap_icon "ok-sign" %}
-    LOGIN</button>
+            <p class="lead text-align-center" style="text-align: center;"><strong>Login</strong></p>
+            <table>
+            {% bootstrap_form form %}
+            </table>
+            {% buttons %}
+            <a href="{% url 'signup' %}" ><button type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-pencil"></span> 회원가입
+            </button></a>
+            <button type="submit" class="btn btn-primary pull-right">
+                {% bootstrap_icon "ok-sign" %} LOGIN
+            </button>
         {% endbuttons %}
     </form>
 </div>

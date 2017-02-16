@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^login/$', login, name='login', kwargs={'template_name': 'accounts/login.html',}
         ),
     url(r'^logout/$', logout, {'next_page':'/login/',}, name='logout'),
+    url(r'^profile/$', views.passprofile, name='passprofile'),
     url(r'^profile/(?P<user_pk>\d+)/$', views.profile, name='profile'),
 ]

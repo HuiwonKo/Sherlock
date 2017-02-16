@@ -50,17 +50,24 @@
                 $(this).find('.over').hide();
             });
     });
-
     </script>
-    <h2 style="padding-left: 50px;">{{user.username}}</h2>
-    <h3>내가 쓴 리뷰 </h3>
+
+    <h2>{{user.username}}</h2>
     <hr>
-    <div id="container">
+
+<style>
+table, th, td { border:1px solid black; }
+</style>
+
+<table style="height:1000px;">
+<tr>
+<td style="width:1000px;">
         {% if user.review_user.all %}
         <div id="content" class="movie mov_star">
             {% for review in user.review_user.all %}
-                <li id="room_review_list" class="mov_star_li" data-movie-id="49866">
-                    <p class="name" >{{review.room.name}}</p>
+                <li id="room_review_list" class="mov_star_li">
+                    {{review.room.name}}
+                    <br>
                     <a href="{% url "cafe:room_detail" review.room.pk %}" >
                         <img src="{% static 'image/test/a.jpg' %}" alt="" class="thumb" />
                     </a>
@@ -69,11 +76,12 @@
                         <textarea rows="4" cols="30">{{review.content}}</textarea>
                 </li>
            {% endfor %}
+
         </div>
         {% endif %}
-    </div>
-    <hr>
+</td>
 
+<td style="width:200px;">
     <h3>좋아요</h3>
     <div id="container">
         {% if user.like_user_set.all %}
@@ -90,5 +98,7 @@
         </div>
         {% endif %}
     </div>
-
+</td>
+</tr>
+</table>
 {% endblock %}
