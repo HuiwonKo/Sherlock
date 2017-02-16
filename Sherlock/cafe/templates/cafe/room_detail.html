@@ -40,14 +40,14 @@
                     </td>
 
                     <td style="width:500px; height:40px;">
-                        <h3 style="margin-left: 20px;">STORY &nbsp<a class="btn btn-info " href="http://{{room.cafe.url}}" target = "_blank">지금 바로 예약&nbsp<i class="fa fa-angle-right"></i></a></h3>
+                        <h3 style="margin-left: 20px;">STORY &nbsp;<a class="btn btn-info " href="http://{{room.cafe.url}}" target = "_blank">지금 바로 예약&nbsp;<i class="fa fa-angle-right"></i></a></h3>
 
                     </td>
                 </tr>
 
                 <tr>
                     <td style="width:500px; height:100px;">
-                        <h7 style="margin-left:20px;">&nbsp&nbsp&nbsp{{room.story | linebreaks}}</h>
+                        <h7 style="margin-left:20px;">&nbsp;&nbsp;&nbsp;{{room.story | linebreaks}}</h>
                     </td>
                 </tr>
 
@@ -94,7 +94,7 @@
                         <ul>
                             {% for review in room.cafe_review_set.all %}
                             <li>
-                                {{ review.user }} : &nbsp <small>{{ review.content }}</small>&nbsp&nbsp&nbsp
+                                {{ review.user }} : &nbsp; <small>{{ review.content }}</small>&nbsp;&nbsp;&nbsp;
 
                                 {% if review.user == request.user %}
                                 <span style="position: right; ">
