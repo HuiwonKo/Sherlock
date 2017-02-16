@@ -25,7 +25,8 @@
                 <p>
                     {{ room.story }}
                 </p>
-                <a class="btn btn-primary" href="http://{{room.cafe.url}}" target = "_blank">예약하러가기<i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-primary" href="tel:{{ room.cafe.phone }}" target = "_blank">전화예약<i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-primary" href="http://{{ room.cafe.url }}" target = "_blank">홈페이지예약<i class="fa fa-angle-right"></i></a>
                 <p></p>
             </div>
 
