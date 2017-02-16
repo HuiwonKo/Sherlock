@@ -24,7 +24,7 @@
         #room_review_list {
             margin: 1 1 1 1;
             padding: 2 2 2 2;
-            border : 0;
+            border : 1;
             float: left;
         }
         .sidebar-box {
@@ -52,53 +52,58 @@
     });
     </script>
 
-    <h2>{{user.username}}</h2>
+    <h2>My Page: {{user.username}}</h2>
     <hr>
 
-<style>
-table, th, td { border:1px solid black; }
-</style>
+    <!--style>
+        table, th, td { border:1px solid black; }
+    </style-->
 
-<table style="height:1000px;">
-<tr>
-<td style="width:1000px;">
-        {% if user.review_user.all %}
-        <div id="content" class="movie mov_star">
-            {% for review in user.review_user.all %}
-                <li id="room_review_list" class="mov_star_li">
-                    {{review.room.name}}
-                    <br>
-                    <a href="{% url "cafe:room_detail" review.room.pk %}" >
-                        <img src="{% static 'image/test/a.jpg' %}" alt="" class="thumb" />
-                    </a>
-                    <p>{{review.room.room_like_set.all.count}}likes</p>
-                    <a href="{% url 'cafe:review_edit' review.room.pk review.pk %}" class="btn btn_review_write"><button class="btn btn-default" style="height: 20px; padding-top: 0;">수정</button></a><br>
-                        <textarea rows="4" cols="30">{{review.content}}</textarea>
-                </li>
-           {% endfor %}
 
-        </div>
-        {% endif %}
-</td>
 
-<td style="width:200px;">
-    <h3>좋아요</h3>
-    <div id="container">
-        {% if user.like_user_set.all %}
-        <div id="content" class="movie mov_star">
-            {% for like in user.like_user_set.all %}
-                <li id="room_review_list" class="mov_star_li" data-movie-id="49866">
-                    <p class="name" >{{like.room.name}}</p>
-                    <a href="{% url "cafe:room_detail" like.room.pk %}" >
-                        <img src="{% static 'image/test/a.jpg' %}" alt="" class="thumb" />
-                    </a>
-                    <li>{{like.room.room_like_set.all.count}}likes</li>
-                </li>
-           {% endfor %}
-        </div>
-        {% endif %}
-    </div>
-</td>
-</tr>
-</table>
+    <table style="height:1000px;">
+        <tr>
+            <td style="width:900px; height:50px;">
+                <h3 style="margin-left: 10px; text-align: center;">리뷰 모아보기</h3>
+            </td>
+            <td>
+                <h3 style="margin-left: 10px; text-align: center;">내가 좋아요 누른 방</h3>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:900px; margin-left: 10px; vertical-align: top; padding-left: 5px;">
+                    {% if user.review_user.all %}
+                        {% for review in user.review_user.all %}
+                            <div id="room_review_list" style="padding-left: 15px;">
+                                <h4>{{review.room.name}}</h4>
+                                <a href="{% url "cafe:room_detail" review.room.pk %}" >
+                                    <img src="{% static 'image/main1.jpg' %}" style="width: 190px; padding-bottom: 10px;" alt="" class="thumb" />
+                                </a>
+                                <p>{{review.room.room_like_set.all.count}} likes</p>
+                                    <textarea style="width:140px; height: 80px;">{{review.content}}</textarea>
+                                    <a href="{% url 'cafe:review_edit' review.room.pk review.pk %}" class="btn btn_review_write">
+                                <button class="btn btn-default btn-xs">수정</button></a>
+                            </div>
+                            &nbsp
+                        {% endfor %}
+                    {% endif %}
+            </td>
+
+            <td style="width:250px; vertical-align: top; text-align: center; padding-top: 10px;">
+                    {% if user.like_user_set.all %}
+                        {% for like in user.like_user_set.all %}
+                            <div>
+                                <h5><i class="fa fa-heart" aria-hidden="true"></i>&nbsp{{like.room.name}}</h5>
+                                <a href="{% url "cafe:room_detail" like.room.pk %}" >
+                                    <img src="{% static 'image/main1.jpg' %}" style="width: 190px; padding-bottom: 10px;" alt="" class="thumb" />
+                                </a>
+                                <!--{{like.room.room_like_set.all.count}}likes-->
+                                <br>
+                            </div>
+                       {% endfor %}
+                    {% endif %}
+            </td>
+        </tr>
+    </table>
 {% endblock %}
