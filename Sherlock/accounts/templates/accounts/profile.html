@@ -80,6 +80,8 @@
                                 <a href="{% url "cafe:room_detail" review.room.pk %}" >
                                     {% if review.room.image %}
                                     <img src="{{ review.room.image.url }}" style="width: 190px;  padding-bottom: 10px;" alt="" class="thumb" /></a>
+                                    {% else %}
+                                    <img src="{% static 'image/ready.jpg' %}" style="width: 190px;  padding-bottom: 10px;" alt="" class="thumb" /></a>
                                     {% endif %}
                                     <textarea style="width:400px; height: 140px; margin-left: 10px;">{{review.content}}</textarea>
                                     <a href="{% url 'cafe:review_edit' review.room.pk review.pk %}" class="btn btn_review_write">
