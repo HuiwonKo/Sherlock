@@ -31,6 +31,9 @@ def room_detail(request,pk):
     room = get_object_or_404(Room, pk=pk)
     review_form = ReviewForm()
     number_of_likes = room.room_like_set.all().count()
+    room.click += 1
+    room.save(update_fields = ['click'])
+
     if request.user.id == None:
         user_likes_this = False
     else:

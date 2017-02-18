@@ -27,6 +27,7 @@ class Room(models.Model):
     level = models.IntegerField(choices=LEVEL_CHOICES, default=0, verbose_name="방 레벨")
     image = models.ImageField(blank=True, null=True, verbose_name="방 이미지")
     story = models.TextField(blank = True, verbose_name="방 설명")
+    click = models.IntegerField(default=0, verbose_name="방 조회수")
 
     def __str__(self):
         return self.name
@@ -55,6 +56,9 @@ class Like(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    class Meta:
+        ordering = ['-id']
 
 
 """
