@@ -5,7 +5,7 @@
 
         <div class="container">
             <div class="col-lg-12">
-                <center><h1>{{ room.name }}</h1></center>
+                <center><h1 id="dragoon"><strong>{{ room.name }}</strong></h1></center>
                 <p align="right"><h7>조회수: {{ room.click }}</h7></p>
                 <hr/>
             </div>
@@ -30,7 +30,7 @@
 
                     <td style="width:500px; height:40px;">
                         <h3 style="margin-left: 20px;">STORY &nbsp;
-                            <a class="btn btn-info " href="http://{{room.cafe.url}}" target = "_blank">홈페이지 예약&nbsp;<i class="fa fa-angle-right"></i></a>
+                            <a class="btn btn-info" href="http://{{room.cafe.url}}" target = "_blank">홈페이지 예약&nbsp;<i class="fa fa-angle-right"></i></a>
                             <a class="btn btn-info" href="tel:{{ room.cafe.phone }}" target = "_blank">전화 예약<i class="fa fa-angle-right"></i></a>
                         </h3>
 
@@ -39,7 +39,7 @@
 
                 <tr>
                     <td style="width:500px; height:100px; vertical-align: top;">
-                        <h7 style="margin-left:20px;">&nbsp;&nbsp;&nbsp;{{room.story | linebreaks}}</h>
+                        <h7 style="margin-left:20px;" id="dragoon">&nbsp;&nbsp;&nbsp;{{room.story | linebreaks}}</h7>
                     </td>
                 </tr>
 
@@ -75,7 +75,7 @@
                                 </table>
                             </div>
                             <div class="col-md-2">
-                                <input type="submit" class="btn btn-primary btn-block" value="댓글 쓰기"/>
+                                <input type="submit" class="btn btn-info" value="댓글 작성"/>
                             </div>
                         </form>
                     </td>
