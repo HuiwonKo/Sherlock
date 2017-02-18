@@ -78,7 +78,9 @@
                             <div id="room_review_list" style="padding-left: 15px;">
                                 <h4>{{review.room.name}}</h4>
                                 <a href="{% url "cafe:room_detail" review.room.pk %}" >
+                                    {% if review.room.image %}
                                     <img src="{{ review.room.image.url }}" style="width: 190px;  padding-bottom: 10px;" alt="" class="thumb" /></a>
+                                    {% endif %}
                                     <textarea style="width:400px; height: 140px; margin-left: 10px;">{{review.content}}</textarea>
                                     <a href="{% url 'cafe:review_edit' review.room.pk review.pk %}" class="btn btn_review_write">
                                 <button class="btn btn-default btn-xs">수정</button></a>
