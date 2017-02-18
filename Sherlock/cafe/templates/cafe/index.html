@@ -175,8 +175,8 @@
                 <tbody>
                 {% for room in room_list %}
                 <tr>
-                    <td class='column_elem'><a href="{% url "cafe:room_detail" room.pk %}">{{room.cafe.name}}</a></td>
-                    <td class='column_elem'>{{ room.name }}</td>
+                    <td class='column_elem'>{{room.cafe.name}}</td>
+                    <td class='column_elem'><a href="{% url "cafe:room_detail" room.pk %}">{{ room.name }}</a></td>
                     <td class='column_elem'>
                         {% if room.level == 1 %}
                             <img src="{% static 'image/star.png' %}" width="20" height="20">
